@@ -203,7 +203,7 @@ if page == "🔍 Analyze Ad":
 
     analyze_btn = st.button("🔍 Analyze for Bias", type="primary",
                             use_container_width=True)
-st.write(f"Keywords loaded: {len(BIAS_KEYWORDS)}")
+    st.write(f"Keywords loaded: {len(BIAS_KEYWORDS)}")
     if analyze_btn:
         if not ad_text.strip():
             st.error("Please enter some ad text to analyze.")
