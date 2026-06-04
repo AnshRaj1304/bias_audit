@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 # ============================================================
 st.set_page_config(
     page_title="AI Marketing Bias Detector",
-    page_icon="🔍",
+    page_icon="",
     layout="centered"
 )
 
@@ -81,7 +81,7 @@ st.markdown("""
 # ============================================================
 # HEADER
 # ============================================================
-st.markdown('<p class="main-header">🔍 AI Marketing Bias Detector</p>',
+st.markdown('<p class="main-header"> AI Marketing Bias Detector</p>',
             unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Detect racial and gender bias in AI-generated marketing ads instantly</p>',
             unsafe_allow_html=True)
@@ -89,7 +89,7 @@ st.markdown('<p class="sub-header">Detect racial and gender bias in AI-generated
 # ============================================================
 # NAVIGATION
 # ============================================================
-page = st.radio("", ["🔍 Analyze Ad", "❓ Help & Guide"],
+page = st.radio("", [" Analyze Ad", " Help & Guide"],
                 horizontal=True)
 st.divider()
 
@@ -558,7 +558,7 @@ def get_bias_explanation(keyword):
 # ============================================================
 # PAGE 1 — ANALYZE AD
 # ============================================================
-if page == "🔍 Analyze Ad":
+if page == " Analyze Ad":
 
     st.subheader("Enter Your Marketing Ad")
 
@@ -589,7 +589,7 @@ if page == "🔍 Analyze Ad":
                                 "Home Appliance", "Health Insurance",
                                 "Other"])
 
-    analyze_btn = st.button("🔍 Analyze for Bias", type="primary",
+    analyze_btn = st.button(" Analyze for Bias", type="primary",
                             use_container_width=True)
 
     if analyze_btn:
@@ -604,7 +604,7 @@ if page == "🔍 Analyze Ad":
             if result["is_biased"]:
                 st.markdown(f"""
                 <div class="bias-box">
-                    <h3>⚠️ BIAS DETECTED</h3>
+                    <h3> BIAS DETECTED</h3>
                     <p>This ad contains <strong>{len(result['all_flagged'])}
                     bias indicator(s)</strong> that suggest racially or gender
                     coded language targeting <strong>{race}</strong>.</p>
@@ -613,7 +613,7 @@ if page == "🔍 Analyze Ad":
             else:
                 st.markdown("""
                 <div class="clean-box">
-                    <h3>✅ NO BIAS DETECTED</h3>
+                    <h3> NO BIAS DETECTED</h3>
                     <p>No racially or gender coded language was found
                     in this ad. The language appears neutral and inclusive.</p>
                 </div>
@@ -658,7 +658,7 @@ if page == "🔍 Analyze Ad":
 
             # Exact match keywords
             if result["flagged_keywords"]:
-                st.subheader("🚩 Exact Bias Matches")
+                st.subheader(" Exact Bias Matches")
                 for kw in result["flagged_keywords"]:
                     explanation = get_bias_explanation(kw)
                     st.markdown(f"""
@@ -673,7 +673,7 @@ if page == "🔍 Analyze Ad":
 
             # Fuzzy match keywords
             if result["fuzzy_keywords"]:
-                st.subheader("🔶 Near Matches (Fuzzy Detection)")
+                st.subheader(" Near Matches (Fuzzy Detection)")
                 st.caption("These phrases are close variations of known bias patterns and may indicate rewording of biased language.")
                 for kw, score in result["fuzzy_keywords"]:
                     explanation = get_bias_explanation(kw)
@@ -690,7 +690,7 @@ if page == "🔍 Analyze Ad":
                     """, unsafe_allow_html=True)
 
             # Highlighted ad text
-            st.subheader("📝 Your Ad Text")
+            st.subheader(" Your Ad Text")
             highlighted = ad_text
             for kw in result["flagged_keywords"]:
                 highlighted = highlighted.replace(
@@ -705,7 +705,7 @@ if page == "🔍 Analyze Ad":
             st.divider()
 
             # Recommendation
-            st.subheader("💡 Recommendation")
+            st.subheader(" Recommendation")
             if result["is_biased"]:
                 st.warning(f"""
                 This ad targets **{race} — {gender}** and contains language
@@ -716,11 +716,11 @@ if page == "🔍 Analyze Ad":
                 """)
                 st.markdown("**Suggested rewrite approach:**")
                 st.info("""
-                ✏️  Remove any culturally specific references or brand names
+                 Remove any culturally specific references or brand names
 
-                ✏️  Replace identity-based language with benefit-based language
+                  Replace identity-based language with benefit-based language
 
-                ✏️  Test the same ad copy across all demographics —
+                  Test the same ad copy across all demographics —
                 if it only makes sense for one group it is likely biased
                 """)
             else:
@@ -733,13 +733,13 @@ if page == "🔍 Analyze Ad":
 # ============================================================
 # PAGE 2 — HELP & GUIDE
 # ============================================================
-elif page == "❓ Help & Guide":
+elif page == " Help & Guide":
 
     st.subheader("How to Use the AI Marketing Bias Detector")
 
     st.markdown("""
     <div class="help-section">
-        <h4>🎯 What Does This Tool Do?</h4>
+        <h4> What Does This Tool Do?</h4>
         <p>This tool analyzes AI-generated marketing ads and detects whether
         they contain racial or gender bias — language that stereotypes or
         targets people based on their race or gender rather than focusing
@@ -749,7 +749,7 @@ elif page == "❓ Help & Guide":
 
     st.divider()
 
-    st.subheader("📋 Step-by-Step Guide")
+    st.subheader(" Step-by-Step Guide")
 
     st.markdown("""
     <div class="step-box">
@@ -797,7 +797,7 @@ elif page == "❓ Help & Guide":
 
     st.divider()
 
-    st.subheader("📊 Understanding Your Results")
+    st.subheader(" Understanding Your Results")
 
     col1, col2, col3 = st.columns(3)
 
@@ -806,7 +806,7 @@ elif page == "❓ Help & Guide":
         <div style="background:#d5f5e3; border-radius:8px;
         padding:1rem; text-align:center;">
             <h3>0 – 30</h3>
-            <h4>🟢 Low Bias</h4>
+            <h4> Low Bias</h4>
             <p>No or minimal bias indicators. Ad language appears
             neutral and inclusive.</p>
         </div>
@@ -817,7 +817,7 @@ elif page == "❓ Help & Guide":
         <div style="background:#fef9e7; border-radius:8px;
         padding:1rem; text-align:center;">
             <h3>30 – 60</h3>
-            <h4>🟡 Moderate Bias</h4>
+            <h4> Moderate Bias</h4>
             <p>Some bias indicators found. Review flagged keywords
             and consider revising.</p>
         </div>
@@ -828,7 +828,7 @@ elif page == "❓ Help & Guide":
         <div style="background:#fadbd8; border-radius:8px;
         padding:1rem; text-align:center;">
             <h3>60 – 100</h3>
-            <h4>🔴 High Bias</h4>
+            <h4> High Bias</h4>
             <p>Multiple bias indicators found. Ad should be
             rewritten before use.</p>
         </div>
@@ -836,7 +836,7 @@ elif page == "❓ Help & Guide":
 
     st.divider()
 
-    st.subheader("🔍 What Types of Bias Does This Tool Detect?")
+    st.subheader(" What Types of Bias Does This Tool Detect?")
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Race-Coded Brands",
@@ -931,7 +931,7 @@ elif page == "❓ Help & Guide":
 
     st.divider()
 
-    st.subheader("💡 Tips for Getting the Best Results")
+    st.subheader(" Tips for Getting the Best Results")
 
     st.info("""
     **Tip 1 — Test the same ad across different demographics**
@@ -968,7 +968,7 @@ elif page == "❓ Help & Guide":
 
     st.divider()
 
-    st.subheader("❓ Frequently Asked Questions")
+    st.subheader(" Frequently Asked Questions")
 
     with st.expander("Why is my ad flagged even though it seems fine?"):
         st.write("""
